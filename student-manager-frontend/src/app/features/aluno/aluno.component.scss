@@ -1,32 +1,24 @@
-/* filepath: c:\dev\student_management_fullstack\student-manager-frontend\src\app\features\students\students.component.scss */
-.students-container {
-    padding: 20px;
-  }
-  
-  .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .add-button {
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
-  }
-  
-  .students-table {
-    width: 100%;
-  }
-  
-  .edit-button {
-    margin-right: 10px;
-    background-color: #ffc107;
-    color: white;
-  }
-  
-  .delete-button {
-    background-color: #dc3545;
-    color: white;
-  }
+.aluno-container {
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.add-button {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+}
+
+p-table {
+  width: 100%;
+}
+
+button {
+  margin-right: 5px;
+}

@@ -1,15 +1,14 @@
-/* filepath: c:\dev\student_management_fullstack\student-manager-frontend\src\app\features\menu\menu.component.scss */
 .menu-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; /* Centraliza verticalmente */
+    height: 100vh;
   }
   
   .menu-grid {
     display: grid;
-    grid-template-columns: repeat(2, 150px); /* 2 colunas com botões quadrados */
-    gap: 20px; /* Espaçamento entre os botões */
+    grid-template-columns: repeat(3, 150px);
+    gap: 20px; 
   }
   
   .menu-button {
