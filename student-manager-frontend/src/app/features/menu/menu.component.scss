@@ -1,0 +1,30 @@
+/* filepath: c:\dev\student_management_fullstack\student-manager-frontend\src\app\features\menu\menu.component.scss */
+.menu-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Centraliza verticalmente */
+  }
+  
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 150px); /* 2 colunas com botões quadrados */
+    gap: 20px; /* Espaçamento entre os botões */
+  }
+  
+  .menu-button {
+    width: 150px;
+    height: 150px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .menu-button:hover {
+    background-color: #0056b3;
+  }

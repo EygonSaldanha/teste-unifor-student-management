@@ -1,0 +1,36 @@
+<div class="login-container">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="p-field">
+        <label for="username">Usuário</label>
+        <input
+          id="username"
+          pInputText
+          type="text"
+          formControlName="username"
+          [class.p-invalid]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched"
+        />
+        <small class="p-error" [hidden]="loginForm.get('username')?.hasError('required') && loginForm.get('username')?.touched">
+          Username is required
+        </small>
+      </div>
+  
+      <div class="p-field">
+        <label for="password">Password</label>
+        <p-password
+          id="password"
+          formControlName="password"
+          [feedback]="false"
+          [class.p-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched"
+        ></p-password>
+        <small class="p-error" *ngIf="loginForm.get('password')?.hasError('required') && loginForm.get('password')?.touched">
+            senha é obrigatória
+        </small>
+        <small class="p-error" *ngIf="loginForm.get('password')?.hasError('minlength') && loginForm.get('password')?.touched">
+          Senha deve ter no mínimo 6 caracteres
+        </small>
+      </div>
+  
+      <button pButton type="submit" label="Login" [disabled]="loginForm.invalid" class="p-button-primary"></button>
+    </form>
+  </div>

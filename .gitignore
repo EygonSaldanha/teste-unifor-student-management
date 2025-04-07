@@ -1,0 +1,29 @@
+# Root
+*.log
+*.tmp
+*.swp
+.DS_Store
+.env
+
+# Backend (Gradle/Java)
+**/student-manager-backend/.gradle/
+**/student-manager-backend/build/
+**/student-manager-backend/.quarkus/
+**/student-manager-backend/.idea/
+**/student-manager-backend/*.iml
+**/student-manager-backend/gradle-app.setting
+**/student-manager-backend/.classpath
+**/student-manager-backend/.project
+**/student-manager-backend/.settings/
+
+# Frontend (Angular)
+**/student-manager-frontend/node_modules/
+**/student-manager-frontend/dist/
+**/student-manager-frontend/.angular/cache/
+**/student-manager-frontend/.vscode/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*

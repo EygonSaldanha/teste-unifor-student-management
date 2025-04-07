@@ -1,0 +1,28 @@
+<div class="students-container">
+    <div class="header">
+      <h2>Gerenciar Alunos</h2>
+      <button pButton type="button" label="Adicionar Aluno" icon="pi pi-plus" class="add-button" (click)="onAddStudent()"></button>
+    </div>
+  
+    <p-table [value]="students" class="students-table">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Ações</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-student>
+        <tr>
+          <td>{{ student.id }}</td>
+          <td>{{ student.name }}</td>
+          <td>{{ student.email }}</td>
+          <td>
+            <button pButton type="button" icon="pi pi-pencil" class="edit-button" (click)="onEdit(student.id)"></button>
+            <button pButton type="button" icon="pi pi-trash" class="delete-button" (click)="onDelete(student.id)"></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
