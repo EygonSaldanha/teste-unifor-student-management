@@ -26,6 +26,17 @@ public class AlunoService {
         return aluno;
     }
 
+    public List<AlunoComUsuarioDTO> buscarAlunoComUsuario() {
+        List<Aluno> alunos = Aluno.listAll();
+        return alunos.stream()
+                .map(aluno -> new AlunoComUsuarioDTO(
+                        aluno.id,
+                        aluno.getMatricula(),
+                        aluno.getUsuario()
+                ))
+                .toList();
+    }
+
     public AlunoComUsuarioDTO buscarAlunoComUsuarioPorId(Long id) {
         Aluno aluno = Aluno.findById(id);
         if (aluno == null) {
@@ -40,7 +51,7 @@ public class AlunoService {
         usuario.setNome(dto.getNome());
         usuario.setEmail(dto.getEmail());
         usuario.setCpf(dto.getCpf());
-        usuario.setCargo(CargoEnum.valueOf(dto.getCargo().toUpperCase()));
+        usuario.setCargo(CargoEnum.ALUNO);
         usuario.setStatus(true);
         usuario.persist();
 

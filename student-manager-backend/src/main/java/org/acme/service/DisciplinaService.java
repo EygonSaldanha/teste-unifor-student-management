@@ -4,6 +4,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
 import org.acme.model.dto.AlunoDisciplinaDTO;
+import org.acme.model.dto.AlunoResumoDTO;
 import org.acme.model.dto.DisciplinaDTO;
 import org.acme.model.entity.Aluno;
 import org.acme.model.entity.AlunoDisciplina;
@@ -80,5 +81,9 @@ public class DisciplinaService {
         matricula.persist();
         return matricula;
     }
+
+//    public List<AlunoResumoDTO> listarAlunosPorCurso(Long cursoId){
+//        List<Aluno> alunos = Aluno.list("")
+//    }
 
 }

@@ -26,6 +26,13 @@ public class AlunoResource {
         return alunoService.listarTodos();
     }
     @GET
+    @Path("/usuario")
+    public Response buscarAlunoComUsuario(@PathParam("id") Long id) {
+        List<AlunoComUsuarioDTO> aluno = alunoService.buscarAlunoComUsuario();
+        return Response.ok(aluno).build();
+    }
+
+    @GET
     @Path("/usuario/{id}")
     public Response buscarAlunoComUsuarioPorId(@PathParam("id") Long id) {
         AlunoComUsuarioDTO aluno = alunoService.buscarAlunoComUsuarioPorId(id);
@@ -40,7 +47,6 @@ public class AlunoResource {
     }
 
     @POST
-    @Path("/create")
     @Transactional
     public Response criarAluno(UsuarioDTO dto){
         Aluno aluno = alunoService.salvarUsuario(dto);
