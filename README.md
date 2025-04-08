@@ -3,6 +3,8 @@
 
 Este projeto é composto por um back-end desenvolvido em **Quarkus** e um front-end desenvolvido com **Angular**. Ele permite o gerenciamento de usuários, alunos e disciplinas.
 
+> ⚠️ Observação: infelizmente não consegui terminar o projeto a tempo, por isso estou desenvolvendo uma nova versão na branch `projeto-v2`.
+
 ---
 
 ## Tecnologias Utilizadas
@@ -105,8 +107,6 @@ Este projeto é composto por um back-end desenvolvido em **Quarkus** e um front-
 | `/menu`         | `MenuComponent`    | Menu principal pós-login    |
 | `/alunos`       | `AlunoComponent`   | Tela gerencia de alunos     |
 | `/disciplinas`  | (provavelmente)    | Tela gerencia de disciplinas|
-
-> ⚠️ Observação: as alterações que não foram concluídas estão disponíveis na branch .
 
 ## Contato
 
