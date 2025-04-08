@@ -1,3 +1,3 @@
 export const environment = {
-    api: "0.0.0.0:8089/unifor",
-}
+    api: "http://localhost:8089/unifor"
+  }

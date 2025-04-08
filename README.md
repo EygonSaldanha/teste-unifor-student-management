@@ -25,6 +25,13 @@ Este projeto é composto por um back-end desenvolvido em **Quarkus** e um front-
 
 #### Configuração do Banco de Dados
 
+1. Construa e suba os containers
+```bash
+docker compose up --build
+```
+
+### Back-End
+
 1. Navegue até a pasta do projeto back-end:
    ```bash
    cd student-manager-backend
