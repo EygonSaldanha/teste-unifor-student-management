@@ -27,11 +27,11 @@ public class UsuarioService {
     @Transactional
     public Usuario criarUsuario(UsuarioDTO dto) {
         Usuario usuario = new Usuario();
-        usuario.setNome(dto.nome());
-        usuario.setEmail(dto.email());
-        usuario.setCpf(dto.cpf());
-        usuario.setCargo(CargoEnum.valueOf(dto.cargo().toUpperCase()));
-        usuario.setStatus(true);
+        usuario.nome = dto.nome();
+        usuario.email = dto.email();
+        usuario.cpf = dto.cpf();
+        usuario.cargo = CargoEnum.valueOf(dto.cargo().toUpperCase());
+        usuario.isAtivo = true;
         usuario.persist();
         return usuario;
     }
@@ -42,10 +42,10 @@ public class UsuarioService {
         if (usuario == null) {
             throw new NotFoundException("Usuário não encontrado");
         }
-        usuario.setNome(dto.nome());
-        usuario.setEmail(dto.email());
-        usuario.setCpf(dto.cpf());
-        usuario.setCargo(CargoEnum.valueOf(dto.cargo().toUpperCase()));
+        usuario.nome = dto.nome();
+        usuario.email = dto.email();
+        usuario.cpf = dto.cpf();
+        usuario.cargo = CargoEnum.valueOf(dto.cargo().toUpperCase());
         usuario.persist();
         return usuario;
     }

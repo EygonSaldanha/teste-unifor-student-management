@@ -31,9 +31,8 @@ public class DisciplinaService {
     @Transactional
     public Disciplina criar(DisciplinaDTO dto) {
         Disciplina disciplina = new Disciplina();
-        disciplina.setNome(dto.nome());
-        disciplina.setDescricao(dto.descricao());
-        disciplina.setMatricula(dto.matricula());
+        disciplina.nome =dto.nome();
+        disciplina.codigo= dto.codigo();
         disciplina.persist();
         return disciplina;
     }
@@ -45,9 +44,8 @@ public class DisciplinaService {
             throw new NotFoundException("Disciplina de ID " + id + " não foi encontrada.");
         }
 
-        disciplina.setNome(dto.nome());
-        disciplina.setDescricao(dto.descricao());
-        disciplina.setMatricula(dto.matricula());
+        disciplina.nome = dto.nome();
+        disciplina.codigo = dto.codigo();
         return disciplina;
     }
 
@@ -73,10 +71,10 @@ public class DisciplinaService {
         }
 
         AlunoDisciplina matricula = new AlunoDisciplina();
-                matricula.setAluno(aluno);
-                matricula.setDisciplina(disciplina);
-                matricula.setDataInscricao(LocalDateTime.now());
-                matricula.setStatus(true);
+                matricula.aluno = aluno;
+                matricula.disciplina = disciplina;
+                matricula.dataInscricao = LocalDateTime.now();
+                matricula.isAtivo = true;
 
         matricula.persist();
         return matricula;

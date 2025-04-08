@@ -6,68 +6,29 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.acme.model.enums.CargoEnum;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Table(name = "usuario")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-public class Usuario  extends PanacheEntity {
+public class Usuario  extends PanacheEntityBase {
 
-    @Column(name = "nome", nullable = false, columnDefinition = "VARCHAR(255)")
-    private String nome;
+    @Id
+    @Column(name = "ID_USUARIO")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long id;
 
-    @Column(name = "email", nullable = true, length = 100, columnDefinition = "VARCHAR(50)")
-    private String email;
+    @Column(name = "NOME", nullable = false, columnDefinition = "VARCHAR(255)")
+    public String nome;
 
-    @Column(name = "cpf", nullable = false, length = 11, columnDefinition = "VARCHAR(11)")
-    private String cpf;
+    @Column(name = "EMAIL", nullable = true, length = 100, columnDefinition = "VARCHAR(50)")
+    public String email;
 
-    @Column(name = "cargo", nullable = false)
-    @Enumerated(EnumType.ORDINAL)
-    private CargoEnum cargo;
+    @Column(name = "CPF", nullable = false, length = 11, columnDefinition = "VARCHAR(11)")
+    public String cpf;
 
-    @Column(name = "status")
-    private Boolean status;
+    @Column(name = "CARGO", nullable = false)
+    @Enumerated(EnumType.STRING)
+    public CargoEnum cargo;
 
-    public String getNome() {
-        return nome;
-    }
+    @Column(name = "IS_ATIVO")
+    public Boolean isAtivo;
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public CargoEnum getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(CargoEnum cargo) {
-        this.cargo = cargo;
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
 }

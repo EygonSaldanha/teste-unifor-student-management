@@ -2,6 +2,7 @@ package org.acme.model.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,16 +11,17 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "coordenador")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-public class Gerente extends PanacheEntity {
-    @OneToOne
-    @JoinColumn(name = "id_usuario", nullable = false, unique = true, foreignKey = @ForeignKey(name = "fk_aluno_usuario"))
-    @JsonBackReference
-    private Usuario usuario;
+public class Gerente extends PanacheEntityBase {
 
-    @Column(name = "matricula", nullable = false, unique = true, length = 24, columnDefinition = "VARCHAR(24)")
-    private String matricula;
+    @Id
+    @Column(name = "ID_GERENTE")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long id;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO")
+    public Usuario usuario;
+
+    @Column(name = "MATRICULA", nullable = false, unique = true, length = 24, columnDefinition = "VARCHAR(24)")
+    public String matricula;
 }

@@ -1,6 +1,5 @@
 package org.acme.model.entity;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -12,55 +11,24 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "alunoDisciplina")
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
-public class AlunoDisciplina extends PanacheEntity {
+public class AlunoDisciplina extends PanacheEntityBase {
+
+    @Id
+    @Column(name = "ID_ALUNO_DISCIPLINA")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "aluno_id", nullable = false)
-    private Aluno aluno;
+    @JoinColumn(name = "ID_ALUNO", nullable = false)
+    public Aluno aluno;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "disciplina_id", nullable = false)
-    private Disciplina disciplina;
+    @JoinColumn(name = "ID_DISCIPLINA", nullable = false)
+    public Disciplina disciplina;
 
-    @Column(name = "status", nullable = false)
-    private Boolean status;
+    @Column(name = "IS_ATIVO", nullable = false)
+    public Boolean isAtivo;
 
     @Column(name = "data_inscricao", nullable = false)
-    private LocalDateTime dataInscricao;
-
-    public Aluno getAluno() {
-        return aluno;
-    }
-
-    public void setAluno(Aluno aluno) {
-        this.aluno = aluno;
-    }
-
-    public Disciplina getDisciplina() {
-        return disciplina;
-    }
-
-    public void setDisciplina(Disciplina disciplina) {
-        this.disciplina = disciplina;
-    }
-
-    public Boolean getStatus() {
-        return status;
-    }
-
-    public void setStatus(Boolean status) {
-        this.status = status;
-    }
-
-    public LocalDateTime getDataInscricao() {
-        return dataInscricao;
-    }
-
-    public void setDataInscricao(LocalDateTime dataInscricao) {
-        this.dataInscricao = dataInscricao;
-    }
+    public LocalDateTime dataInscricao;
 }

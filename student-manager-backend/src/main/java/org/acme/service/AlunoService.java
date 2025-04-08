@@ -31,8 +31,8 @@ public class AlunoService {
         return alunos.stream()
                 .map(aluno -> new AlunoComUsuarioDTO(
                         aluno.id,
-                        aluno.getMatricula(),
-                        aluno.getUsuario()
+                        aluno.matricula,
+                        aluno.usuario
                 ))
                 .toList();
     }
@@ -42,22 +42,22 @@ public class AlunoService {
         if (aluno == null) {
             throw new NotFoundException("Aluno não encontrado");
         }
-        return new AlunoComUsuarioDTO(aluno.id, aluno.getMatricula(), aluno.getUsuario());
+        return new AlunoComUsuarioDTO(aluno.id, aluno.matricula, aluno.usuario);
     }
 
     @Transactional
     public Aluno salvarUsuario(UsuarioDTO dto) {
         Usuario usuario = new Usuario();
-        usuario.setNome(dto.nome());
-        usuario.setEmail(dto.email());
-        usuario.setCpf(dto.cpf());
-        usuario.setCargo(CargoEnum.ALUNO);
-        usuario.setStatus(true);
+        usuario.nome=dto.nome();
+        usuario.email=dto.email();
+        usuario.cpf=dto.cpf();
+        usuario.cargo=CargoEnum.ALUNO;
+        usuario.isAtivo = true;
         usuario.persist();
 
         Aluno aluno = new Aluno();
-        aluno.setUsuario(usuario);
-        aluno.setMatricula(dto.matricula());
+        aluno.usuario=usuario;
+        aluno.matricula=dto.matricula();
         aluno.persist();
 
         return aluno;
@@ -70,15 +70,15 @@ public class AlunoService {
             throw new NotFoundException("Aluno não encontrado");
         }
 
-        Usuario usuario = aluno.getUsuario();
-        usuario.setNome(dto.nome());
-        usuario.setEmail(dto.email());
-        usuario.setCpf(dto.email());
-        usuario.setCargo(CargoEnum.valueOf(dto.cargo().toUpperCase()));
+        Usuario usuario = aluno.usuario;
+        usuario.nome = dto.nome();
+        usuario.email = dto.email();
+        usuario.cpf = dto.email();
+        usuario.cargo = CargoEnum.valueOf(dto.cargo().toUpperCase());
         usuario.persist();
 
-        aluno.setMatricula(dto.matricula());
-        aluno.setUsuario(usuario);
+        aluno.matricula = dto.matricula();
+        aluno.usuario = usuario;
         aluno.persist();
 
         return aluno;

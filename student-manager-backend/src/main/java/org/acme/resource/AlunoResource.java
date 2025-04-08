@@ -25,6 +25,7 @@ public class AlunoResource {
     public List<Aluno> list() {
         return alunoService.listarTodos();
     }
+    
     @GET
     @Path("/usuario")
     public Response buscarAlunoComUsuario(@PathParam("id") Long id) {
