@@ -48,16 +48,16 @@ public class AlunoService {
     @Transactional
     public Aluno salvarUsuario(UsuarioDTO dto) {
         Usuario usuario = new Usuario();
-        usuario.setNome(dto.getNome());
-        usuario.setEmail(dto.getEmail());
-        usuario.setCpf(dto.getCpf());
+        usuario.setNome(dto.nome());
+        usuario.setEmail(dto.email());
+        usuario.setCpf(dto.cpf());
         usuario.setCargo(CargoEnum.ALUNO);
         usuario.setStatus(true);
         usuario.persist();
 
         Aluno aluno = new Aluno();
         aluno.setUsuario(usuario);
-        aluno.setMatricula(dto.getMatricula());
+        aluno.setMatricula(dto.matricula());
         aluno.persist();
 
         return aluno;
@@ -71,13 +71,13 @@ public class AlunoService {
         }
 
         Usuario usuario = aluno.getUsuario();
-        usuario.setNome(dto.getNome());
-        usuario.setEmail(dto.getEmail());
-        usuario.setCpf(dto.getCpf());
-        usuario.setCargo(CargoEnum.valueOf(dto.getCargo().toUpperCase()));
+        usuario.setNome(dto.nome());
+        usuario.setEmail(dto.email());
+        usuario.setCpf(dto.email());
+        usuario.setCargo(CargoEnum.valueOf(dto.cargo().toUpperCase()));
         usuario.persist();
 
-        aluno.setMatricula(dto.getMatricula());
+        aluno.setMatricula(dto.matricula());
         aluno.setUsuario(usuario);
         aluno.persist();
 

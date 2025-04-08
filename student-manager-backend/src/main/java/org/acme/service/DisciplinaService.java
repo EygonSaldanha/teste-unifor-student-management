@@ -31,9 +31,9 @@ public class DisciplinaService {
     @Transactional
     public Disciplina criar(DisciplinaDTO dto) {
         Disciplina disciplina = new Disciplina();
-        disciplina.setNome(dto.getNome());
-        disciplina.setDescricao(dto.getDescricao());
-        disciplina.setMatricula(dto.getMatricula());
+        disciplina.setNome(dto.nome());
+        disciplina.setDescricao(dto.descricao());
+        disciplina.setMatricula(dto.matricula());
         disciplina.persist();
         return disciplina;
     }
@@ -45,9 +45,9 @@ public class DisciplinaService {
             throw new NotFoundException("Disciplina de ID " + id + " não foi encontrada.");
         }
 
-        disciplina.setNome(dto.getNome());
-        disciplina.setDescricao(dto.getDescricao());
-        disciplina.setMatricula(dto.getMatricula());
+        disciplina.setNome(dto.nome());
+        disciplina.setDescricao(dto.descricao());
+        disciplina.setMatricula(dto.matricula());
         return disciplina;
     }
 
@@ -62,12 +62,12 @@ public class DisciplinaService {
 
     @Transactional
     public AlunoDisciplina matricularAluno(AlunoDisciplinaDTO dto) {
-        Aluno aluno = Aluno.findById(dto.getAlunoId());
+        Aluno aluno = Aluno.findById(dto.alunoId());
         if (aluno == null) {
             throw new NotFoundException("Aluno não encontrado");
         }
 
-        Disciplina disciplina = Disciplina.findById(dto.getDisciplinaId());
+        Disciplina disciplina = Disciplina.findById(dto.disciplinaId());
         if (disciplina == null) {
             throw new NotFoundException("Disciplina não encontrada");
         }
