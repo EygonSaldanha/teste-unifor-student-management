@@ -1,4 +1,3 @@
-// aluno.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -28,7 +27,9 @@ export class AlunoService {
   buscarAlunoComUsuarioPorId(id: number): Observable<AlunoComUsuario> {
     return this.http.get<AlunoComUsuario>(`${this.API_URL + "/usuario"}/${id}`);
   }
+
   criarAluno(dto: UsuarioAlunoInterface): Observable<UsuarioAlunoInterface> {
-    return this.http.post<UsuarioAlunoInterface>('/api/usuario', dto);
+    return this.http.post<UsuarioAlunoInterface>(`${this.API_URL}`, dto);
   }
+  
 }

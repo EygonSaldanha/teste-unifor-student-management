@@ -41,8 +41,6 @@ export class alunoComponent implements OnInit {
   ){ }
 
   ngOnInit() {
-    this.http.get<AlunoInterface[]>('http://localhost:8089/transacao/conta/3')
-      .subscribe((dados) => this.listaAlunos = dados);
   }
 
   onSquareButtonClick(): void {
