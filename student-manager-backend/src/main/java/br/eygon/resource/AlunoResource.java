@@ -4,6 +4,7 @@ import br.eygon.dto.AlunoComUsuarioDTO;
 import br.eygon.dto.UsuarioDTO;
 import br.eygon.entity.Aluno;
 import br.eygon.service.AlunoService;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -26,12 +27,14 @@ public class AlunoResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @RolesAllowed("ADMIN")
     public List<Aluno> list() {
         return alunoService.listarTodos();
     }
     
     @GET
     @Path("/usuario")
+    @RolesAllowed("ADMIN")
     public Response buscarAlunoComUsuario(@PathParam("id") Long id) {
         List<AlunoComUsuarioDTO> aluno = alunoService.buscarAlunoComUsuario();
         return Response.ok(aluno).build();
@@ -39,6 +42,7 @@ public class AlunoResource {
 
     @GET
     @Path("/usuario/{id}")
+    @RolesAllowed("ADMIN")
     public Response buscarAlunoComUsuarioPorId(@PathParam("id") Long id) {
         AlunoComUsuarioDTO aluno = alunoService.buscarAlunoComUsuarioPorId(id);
         return Response.ok(aluno).build();
@@ -46,6 +50,7 @@ public class AlunoResource {
 
     @GET
     @Path("/{id}")
+    @RolesAllowed("ADMIN")
     public Response buscarPorId(@PathParam("id") Long id) {
         Aluno aluno = alunoService.buscarPorId(id);
         return Response.ok(aluno).build();
@@ -53,6 +58,7 @@ public class AlunoResource {
 
     @POST
     @Transactional
+    @RolesAllowed("ADMIN")
     public Response criarAluno(UsuarioDTO dto){
         Aluno aluno = alunoService.salvarUsuario(dto);
         return Response.status(Response.Status.CREATED).entity(aluno).build();
@@ -61,6 +67,7 @@ public class AlunoResource {
     @PUT
     @Path("/{id}")
     @Transactional
+    @RolesAllowed("ADMIN")
     public Response atualizarAluno(@PathParam("id") Long id, UsuarioDTO dto) {
         Aluno atualizado = alunoService.atualizarAluno(id, dto);
         return Response.ok(atualizado).build();
@@ -69,6 +76,7 @@ public class AlunoResource {
     @DELETE
     @Path("/{id}")
     @Transactional
+    @RolesAllowed("ADMIN")
     public Response deletarAluno(@PathParam("id") Long id) {
         alunoService.deletarAluno(id);
         return Response.noContent().build();

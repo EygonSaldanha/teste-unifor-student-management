@@ -1,33 +1,28 @@
-import { Injectable } from '@angular/core';
-import {
-  HttpInterceptor,
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpErrorResponse
-} from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { HttpInterceptorFn } from '@angular/common/http';
+import { inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { tap } from 'rxjs';
 
-@Injectable()
-export class AuthInterceptor implements HttpInterceptor {
-  constructor(private router: Router) {}
+export const authInterceptor: HttpInterceptorFn = (req, next) => {
+  const token = localStorage.getItem('jwtToken');
+  const router = inject(Router);
 
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem('jwtToken');
+  const isPublic =
+    req.url.endsWith('/login')
 
-    const clonedReq = token
-      ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` } })
-      : req;
-
-    return next.handle(clonedReq).pipe(
-      catchError((error: HttpErrorResponse) => {
-        if (error.status === 401) {
-          localStorage.removeItem('jwtToken');
-          this.router.navigate(['/login']);
+  const clonedReq = (token && !isPublic)
+    ? req.clone({ setHeaders: { Authorization: `Bearer ${token}` } })
+    : req;
+    
+  return next(clonedReq).pipe(
+    tap({
+      error: (err: HttpErrorResponse) => {
+        if (err.status === 401 || err.status === 403) {
+          localStorage.removeItem('token');
+          router.navigate(['/login']);
         }
-        return throwError(() => error);
-      })
-    );
-  }
-}
+      }
+    })
+  );
+};

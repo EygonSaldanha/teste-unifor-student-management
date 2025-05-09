@@ -56,8 +56,6 @@ export class HomeComponent implements OnInit {
   }
   
   pesquisar(): void {
-    console.log('Buscando por:', this.nomeBusca);
-    // Adicione a lógica de busca aqui
   }
 
   onMenu1Click(): void {

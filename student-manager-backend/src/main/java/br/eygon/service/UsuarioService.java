@@ -2,6 +2,7 @@ package br.eygon.service;
 
 import br.eygon.dto.UsuarioDTO;
 import br.eygon.entity.Usuario;
+import br.eygon.enums.CargoEnum;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.NotFoundException;
@@ -29,7 +30,7 @@ public class UsuarioService {
         usuario.nome = dto.nome();
         usuario.email = dto.email();
         usuario.cpf = dto.cpf();
-        usuario.cargo = dto.cargo();
+        usuario.cargo = CargoEnum.ALUNO;
         usuario.ativo = true;
         usuario.persist();
         return usuario;
@@ -45,7 +46,7 @@ public class UsuarioService {
         usuario.nome = dto.nome();
         usuario.email = dto.email();
         usuario.cpf = dto.cpf();
-        usuario.cargo = dto.cargo();
+        usuario.cargo = CargoEnum.ALUNO;
         usuario.persist();
         return usuario;
     }
