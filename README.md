@@ -2,6 +2,9 @@
 # Sistema de Gerenciamento de Alunos
 
 Este projeto é composto por um back-end desenvolvido em **Quarkus** e um front-end desenvolvido com **Angular**. Ele permite o gerenciamento de usuários, alunos e disciplinas.
+# Sistema de Gerenciamento de Alunos
+
+Este projeto é composto por um back-end desenvolvido em **Quarkus** e um front-end em **Angular**. Ele permite o gerenciamento de usuários, alunos e disciplinas, agora totalmente executável via Docker.
 
 ---
 
@@ -10,69 +13,28 @@ Este projeto é composto por um back-end desenvolvido em **Quarkus** e um front-
 - **Back-end**: Java, Quarkus, Hibernate ORM, Jakarta REST
 - **Front-end**: Angular, PrimeNG
 - **Banco de Dados**: PostgreSQL
+- **Containerização**: Docker, Docker Compose
 
 ---
 
-## Como Rodar o Projeto
+## Como Rodar o Projeto com Docker
 
-### Back-End
+### Pré-requisitos
 
-#### Pré-requisitos
+- Docker
+- Docker Compose
 
-- Java 17+
-- Maven
-- PostgreSQL
+### Subindo o ambiente completo
 
-#### Configuração do Banco de Dados
-
-1. Construa e suba os containers
-```bash
-docker compose up --build
-```
-
-### Back-End
-
-1. Navegue até a pasta do projeto back-end:
+1. Na raiz do projeto, execute:
    ```bash
-   cd student-manager-backend
-   ```
+   docker compose up --build
 
-2. Compile e execute com:
-   ```bash
-   ./mvnw quarkus:dev
-   ```
+2. A aplicação estará disponível nos seguintes endereços:
 
-3. O back-end estará disponível em: `http://localhost:8080`
-
----
-
-### Front-End
-
-#### Pré-requisitos
-
-- Node.js (v18+)
-- Angular CLI (`npm install -g @angular/cli`)
-
-#### Rodando o front-end
-
-1. Navegue até a pasta do projeto front-end:
-   ```bash
-   cd frontend
-   ```
-
-2. Instale as dependências:
-   ```bash
-   npm install
-   ```
-
-3. Inicie o servidor Angular:
-   ```bash
-   ng serve
-   ```
-
-4. Acesse a aplicação em: `http://localhost:4200`
-
----
+- **Frontend**: [http://localhost:4200](http://localhost:4200)
+- **Backend (API)**: [http://localhost:8080](http://localhost:8080)
+- **PostgreSQL**: acessível internamente pelos containers (`postgres:5432`)
 
 # Mapeamento de Rotas – Projeto Student Management
 
@@ -112,8 +74,6 @@ docker compose up --build
 | `/menu`         | `MenuComponent`    | Menu principal pós-login    |
 | `/alunos`       | `AlunoComponent`   | Tela gerencia de alunos     |
 | `/disciplinas`  | (provavelmente)    | Tela gerencia de disciplinas|
-
-> ⚠️ Observação: as alterações que não foram concluídas estão disponíveis na branch .
 
 ## Contato
 
