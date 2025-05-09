@@ -9,19 +9,26 @@ import jakarta.persistence.*;
 public class Usuario extends PanacheEntityBase {
 
     @Id
-    @Column(name = "ID_USUARIO")
+    @Column(name = "ID_USUARIO",nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
+    @Column(nullable = false)
     public String nome;
 
+    @Column(unique = true, nullable = false)
     public String email;
 
+    @Column(nullable = false)
+    public String senha;
+
+    @Column(nullable = false)
     public String cpf;
 
     @Column(name = "CARGO", nullable = false)
     @Enumerated(EnumType.STRING)
     public CargoEnum cargo;
 
-    public Boolean isAtivo;
+    @Column(nullable = false)
+    public Boolean ativo;
 }

@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 public class AlunoDisciplina extends PanacheEntityBase {
 
     @Id
-    @Column(name = "ID_ALUNO_DISCIPLINA")
+    @Column(name = "ID_ALUNO_DISCIPLINA",nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 

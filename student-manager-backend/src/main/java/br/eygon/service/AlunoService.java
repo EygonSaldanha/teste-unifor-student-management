@@ -52,7 +52,7 @@ public class AlunoService {
         usuario.email=dto.email();
         usuario.cpf=dto.cpf();
         usuario.cargo= CargoEnum.ALUNO;
-        usuario.isAtivo = true;
+        usuario.ativo = true;
         usuario.persist();
 
         Aluno aluno = new Aluno();

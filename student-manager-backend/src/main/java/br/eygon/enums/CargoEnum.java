@@ -2,7 +2,7 @@ package br.eygon.enums;
 
 public enum CargoEnum {
     ALUNO(0, "Aluno"),
-    COORDENADOR(2, "Coordenador");
+    ADMIN(1, "Administrador");
 
     final int codigo;
     final String descricao;

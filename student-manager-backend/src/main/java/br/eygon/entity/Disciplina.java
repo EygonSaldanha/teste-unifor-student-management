@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class Disciplina extends PanacheEntityBase {
 
     @Id
-    @Column(name = "ID_DISCIPLINA")
+    @Column(name = "ID_DISCIPLINA",nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 

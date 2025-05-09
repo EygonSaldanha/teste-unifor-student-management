@@ -30,7 +30,7 @@ public class UsuarioService {
         usuario.email = dto.email();
         usuario.cpf = dto.cpf();
         usuario.cargo = dto.cargo();
-        usuario.isAtivo = true;
+        usuario.ativo = true;
         usuario.persist();
         return usuario;
     }

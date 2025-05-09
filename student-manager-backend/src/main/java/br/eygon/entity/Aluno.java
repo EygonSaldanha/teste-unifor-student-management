@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 public class Aluno extends PanacheEntityBase {
 
     @Id
-    @Column(name = "ID_ALUNO")
+    @Column(name = "ID_ALUNO",nullable = false, updatable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
 
