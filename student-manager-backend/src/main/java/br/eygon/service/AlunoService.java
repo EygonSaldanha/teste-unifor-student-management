@@ -75,7 +75,7 @@ public class AlunoService {
         usuario.nome = dto.nome();
         usuario.email = dto.email();
         usuario.cpf = dto.email();
-        usuario.cargo = dto.cargo();
+        usuario.cargo = CargoEnum.ALUNO;
         usuario.persist();
 
         aluno.matricula = dto.matricula();

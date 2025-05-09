@@ -6,6 +6,5 @@ public record UsuarioDTO(
         String nome,
         String email,
         String cpf,
-        CargoEnum cargo,
         String matricula
 ) {}

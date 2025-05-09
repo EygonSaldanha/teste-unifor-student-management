@@ -56,8 +56,8 @@ public class AlunoResource {
     public Response criarAluno(UsuarioDTO dto){
         Aluno aluno = alunoService.salvarUsuario(dto);
         return Response.status(Response.Status.CREATED).entity(aluno).build();
-
     }
+
     @PUT
     @Path("/{id}")
     @Transactional
