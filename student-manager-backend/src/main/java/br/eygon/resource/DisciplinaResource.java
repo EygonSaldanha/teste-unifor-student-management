@@ -1,6 +1,7 @@
 package br.eygon.resource;
 
 import br.eygon.dto.AlunoDisciplinaDTO;
+import br.eygon.dto.AlunoResumoDTO;
 import br.eygon.dto.DisciplinaDTO;
 import br.eygon.entity.AlunoDisciplina;
 import br.eygon.entity.Disciplina;
@@ -17,8 +18,11 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 public class DisciplinaResource {
 
-    @Inject
-    DisciplinaService disciplinaService;
+    private final DisciplinaService disciplinaService;
+
+    public DisciplinaResource(DisciplinaService disciplinaService) {
+        this.disciplinaService = disciplinaService;
+    }
 
     @GET
     public List<Disciplina> listar() {
@@ -59,5 +63,10 @@ public class DisciplinaResource {
         return Response.noContent().build();
     }
 
+    @GET
+    @Path("/por-aluno")
+    public List<AlunoResumoDTO> listarAlunosPorDisciplina(@QueryParam("id") Long id){
+        return disciplinaService.listarAlunosPorDisciplina(id);
+    }
 
 }

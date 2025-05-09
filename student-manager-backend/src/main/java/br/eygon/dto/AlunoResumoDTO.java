@@ -1,3 +1,3 @@
 package br.eygon.dto;
 
-public record AlunoResumoDTO(String nome, String matricula) {}
+public record AlunoResumoDTO(Long id, String nome, String matricula) {}

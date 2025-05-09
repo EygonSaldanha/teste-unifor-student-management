@@ -4,6 +4,7 @@ import br.eygon.dto.AlunoComUsuarioDTO;
 import br.eygon.dto.UsuarioDTO;
 import br.eygon.entity.Aluno;
 import br.eygon.service.AlunoService;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
@@ -17,8 +18,11 @@ import java.util.List;
 @Consumes(MediaType.APPLICATION_JSON)
 public class AlunoResource {
 
-    @Inject
-    AlunoService alunoService;
+    private final AlunoService alunoService;
+
+    public AlunoResource(AlunoService alunoService) {
+        this.alunoService = alunoService;
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -59,9 +63,6 @@ public class AlunoResource {
     @Transactional
     public Response atualizarAluno(@PathParam("id") Long id, UsuarioDTO dto) {
         Aluno atualizado = alunoService.atualizarAluno(id, dto);
-        if (atualizado == null) {
-            return Response.status(Response.Status.NOT_FOUND).build();
-        }
         return Response.ok(atualizado).build();
     }
 

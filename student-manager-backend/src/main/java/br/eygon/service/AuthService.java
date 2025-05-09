@@ -21,7 +21,7 @@ public class AuthService {
             throw new RuntimeException("Credenciais inválidas ou usuário inativo");
         }
 
-        String token = Jwt.issuer("eygon-auth")
+        String token = Jwt.issuer("auth")
                 .upn(usuario.email)
                 .groups(getGroups(usuario))
                 .claim("id", usuario.id)

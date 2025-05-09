@@ -53,6 +53,7 @@ public class AlunoService {
         usuario.cpf=dto.cpf();
         usuario.cargo= CargoEnum.ALUNO;
         usuario.ativo = true;
+        usuario.senha = dto.cpf();
         usuario.persist();
 
         Aluno aluno = new Aluno();

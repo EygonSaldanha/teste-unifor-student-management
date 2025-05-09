@@ -3,7 +3,6 @@ package br.eygon.resource;
 import br.eygon.dto.LoginDTO;
 import br.eygon.dto.TokenResponseDTO;
 import br.eygon.service.AuthService;
-import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 
@@ -12,9 +11,11 @@ import jakarta.ws.rs.core.MediaType;
 @Produces(MediaType.APPLICATION_JSON)
 public class AuthResource {
 
-    @Inject
-    AuthService authService;
+    private final AuthService authService;
 
+    public AuthResource(AuthService authService) {
+        this.authService = authService;
+    }
     @POST
     @Path("/login")
     public TokenResponseDTO login(LoginDTO dto) {

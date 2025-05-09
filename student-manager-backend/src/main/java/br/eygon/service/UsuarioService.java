@@ -41,6 +41,7 @@ public class UsuarioService {
         if (usuario == null) {
             throw new NotFoundException("Usuário não encontrado");
         }
+
         usuario.nome = dto.nome();
         usuario.email = dto.email();
         usuario.cpf = dto.cpf();

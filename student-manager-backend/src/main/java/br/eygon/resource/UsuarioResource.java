@@ -2,6 +2,7 @@ package br.eygon.resource;
 
 import br.eygon.dto.UsuarioDTO;
 import br.eygon.entity.Usuario;
+import br.eygon.service.DisciplinaService;
 import br.eygon.service.UsuarioService;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
@@ -13,8 +14,11 @@ import java.util.List;
 @Path("/usuarios")
 public class UsuarioResource {
 
-    @Inject
-    UsuarioService usuarioService;
+    private final UsuarioService usuarioService;
+
+    public UsuarioResource(UsuarioService usuarioService){
+        this.usuarioService = usuarioService;
+    }
 
     @GET
     public List<Usuario> listarTodos() {
