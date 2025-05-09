@@ -1,17 +1,21 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './features/login/login.component';
-import { MenuComponent } from './features/menu/menu.component';
-import { PrivateRoutesComponent } from './shered/templates/privateRoutes/privateRoutes.component';
-import { AlunoComponent } from './features/aluno/aluno.component';
-import { AlunoFormComponent } from './features/aluno-form/aluno-form.component';
+import { HomeComponent } from './pages/home/home.component';
+import { HeaderLayoutComponent } from './components/header-layout/header-layout.component';
+import { LoginComponent } from './pages/login/login.component';
+import { alunoComponent } from './pages/aluno/aluno.component';
+import { authGuard } from '../guards/auth.guard';
+import { AlunoFormComponent } from './pages/aluno-form/aluno-form.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: '', component: PrivateRoutesComponent, children: [ 
-      { path: 'menu', component: MenuComponent },
-      { path: 'aluno', component: AlunoComponent },
-      { path: 'aluno-form', component: AlunoFormComponent },
-    ]
-  },
-];
+    { path: 'login', component: LoginComponent },
+    {
+      path: '',
+      component: HeaderLayoutComponent,
+      children: [
+        { path: 'home', canActivate: [authGuard],component: HomeComponent },
+        { path: 'aluno', canActivate: [authGuard], component: alunoComponent },
+        { path: 'aluno-form', canActivate: [authGuard], component: AlunoFormComponent },
+        { path: '', redirectTo: '/home', pathMatch: 'full' }
+      ]
+    }
+  ]

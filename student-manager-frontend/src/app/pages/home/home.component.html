@@ -1,0 +1,11 @@
+<div class="container">
+  <!-- Grid de botões -->
+  <div class="button-grid">
+    <div *ngIf="hasRole('ADMIN')" fxLayout="column" fxFlex="150px" fxLayoutAlign="center center" class="margin-top">
+      <button class="square-button" (click)="onMenu1Click()">Aluno</button>
+    </div>
+    <div *ngIf="hasRole('ADMIN')" fxLayout="column" fxFlex="150px" fxLayoutAlign="center center" class="margin-top">
+      <button class="square-button" (click)="onMenu2Click()">Disciplina</button>
+    </div>
+  </div>
+</div>
