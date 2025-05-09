@@ -31,7 +31,7 @@ export class alunoComponent implements OnInit {
 
   nomeBusca: string = '';
   listaAlunos: AlunoInterface[] = [];
-  colunasTable: string[] = ["id", "matricula", "Nome"];
+  colunasTable: string[] = ["id", "matricula", "nome", "acoes"];
   
   snack: MatSnackBar = inject(MatSnackBar);
 
@@ -41,15 +41,30 @@ export class alunoComponent implements OnInit {
   ){ }
 
   ngOnInit() {
+    this.http.get<AlunoInterface[]>('http://localhost:8089/unifor/alunos')
+      .subscribe({
+        next: (res) => this.listaAlunos = res,
+        error: (err) => this.snack.open('Erro ao carregar alunos', '', { duration: 3000 })
+      });
   }
 
   onSquareButtonClick(): void {
     this.router.navigate(['/aluno-form'] )
-
   }
 
-  preparaEditar(id: string){
-    this.router.navigate(['/cadastro'], { queryParams: { "id": id } } )
+  excluirAluno(id: number): void {
+    if (confirm("Tem certeza que deseja excluir este aluno?")) {
+      this.http.delete(`http://localhost:8089/unifor/alunos/${id}`)
+        .subscribe({
+          next: () => {
+            this.snack.open("Aluno excluído com sucesso!", "", { duration: 3000 });
+            this.listaAlunos = this.listaAlunos.filter(aluno => aluno.id !== id);
+          },
+          error: () => {
+            this.snack.open("Erro ao excluir aluno.", "", { duration: 3000 });
+          }
+        });
+    }
   }
 
 }

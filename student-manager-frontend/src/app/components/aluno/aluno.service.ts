@@ -25,7 +25,7 @@ export class AlunoService {
   constructor(private http: HttpClient) {}
 
   buscarAlunoComUsuarioPorId(id: number): Observable<AlunoComUsuario> {
-    return this.http.get<AlunoComUsuario>(`${this.API_URL + "/usuario"}/${id}`);
+    return this.http.get<AlunoComUsuario>(`${this.API_URL + "/usuario"}`);
   }
 
   criarAluno(dto: UsuarioAlunoInterface): Observable<UsuarioAlunoInterface> {
