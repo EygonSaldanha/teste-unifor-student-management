@@ -4,6 +4,7 @@ import br.eygon.dto.UsuarioDTO;
 import br.eygon.entity.Usuario;
 import br.eygon.service.DisciplinaService;
 import br.eygon.service.UsuarioService;
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
@@ -21,12 +22,14 @@ public class UsuarioResource {
     }
 
     @GET
+    @RolesAllowed("ADMIN")
     public List<Usuario> listarTodos() {
         return usuarioService.listarTodos();
     }
 
     @GET
     @Path("/{id}")
+    @RolesAllowed("ADMIN")
     public Response buscarPorId(@PathParam("id") Long id) {
         Usuario usuario = usuarioService.buscarPorId(id);
         return Response.ok(usuario).build();
@@ -34,6 +37,7 @@ public class UsuarioResource {
 
     @POST
     @Transactional
+    @RolesAllowed("ADMIN")
     public Response criarUsuario(UsuarioDTO dto) {
         Usuario usuario = usuarioService.criarUsuario(dto);
         return Response.status(Response.Status.CREATED).entity(usuario).build();
@@ -42,6 +46,7 @@ public class UsuarioResource {
     @PUT
     @Path("/{id}")
     @Transactional
+    @RolesAllowed("ADMIN")
     public Response atualizarUsuario(@PathParam("id") Long id, UsuarioDTO dto) {
         Usuario usuario = usuarioService.atualizarUsuario(id, dto);
         return Response.ok(usuario).build();
@@ -50,6 +55,7 @@ public class UsuarioResource {
     @DELETE
     @Path("/{id}")
     @Transactional
+    @RolesAllowed("ADMIN")
     public Response deletarUsuario(@PathParam("id") Long id) {
         usuarioService.deletarUsuario(id);
         return Response.noContent().build();
