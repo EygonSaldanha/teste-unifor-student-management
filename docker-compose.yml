@@ -1,5 +1,3 @@
-version: '3.9'
-
 services:
   postgres:
     image: postgres:16
@@ -37,12 +35,11 @@ services:
   frontend:
     build:
       context: ./student-manager-frontend
-      dockerfile: Dockerfile
     container_name: angular_frontend
     depends_on:
       - backend
     ports:
-      - "4200:80"
+      - "4200:4200"
     networks:
       - dev_net
 
